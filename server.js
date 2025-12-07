@@ -28,7 +28,7 @@ const __dirname = path.dirname(__filename);
 const allowedOrigins = [
   'http://localhost:3000', // Keep this for local development testing
   // ⭐️ IMPORTANT: REPLACE THIS WITH YOUR ACTUAL FRONTEND DOMAIN ⭐️
-  'https://magedgamail.github.io/Front-Try-1/',
+  'https://magedgamail.github.io',
   // You might also need to include the specific path if using GitHub Pages:
   // 'https://username.github.io' 
 ];
