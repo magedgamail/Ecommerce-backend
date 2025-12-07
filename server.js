@@ -17,7 +17,7 @@ import { defaultProducts } from './defaultData/defaultProducts.js';
 import { defaultDeliveryOptions } from './defaultData/defaultDeliveryOptions.js';
 import { defaultCart } from './defaultData/defaultCart.js';
 import { defaultOrders } from './defaultData/defaultOrders.js';
-import fs from 'fs';
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +27,15 @@ const __dirname = path.dirname(__filename);
 
 app.use(cors());
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    message: 'E-Commerce API is operational.',
+    status: 'Running',
+    version: '1.0.0',
+    documentation: 'Access API routes at /api/...'
+  });
+});
 
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
