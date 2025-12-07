@@ -25,7 +25,31 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:3000', // Keep this for local development testing
+  // ⭐️ IMPORTANT: REPLACE THIS WITH YOUR ACTUAL FRONTEND DOMAIN ⭐️
+  'https://YOUR-FRONTEND-DOMAIN.com',
+  // You might also need to include the specific path if using GitHub Pages:
+  // 'https://username.github.io' 
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allowed HTTP methods
+  credentials: true, // Allow cookies and authentication headers
+};
+
+app.use(cors(corsOptions)); // Apply the custom options
+
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
