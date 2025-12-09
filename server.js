@@ -77,7 +77,10 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
+
+  
+
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
 });
